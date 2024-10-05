@@ -42,3 +42,17 @@ const subtraction = document.querySelector('#subtraction');
 const addition = document.querySelector('#addition');
 const equal = document.querySelector('#equal');
 const back_space = document.querySelector('#back_space');
+
+function displayNumbers(e){ 
+    if(display.textContent == 0){
+       display.textContent = e.target.textContent;
+      num1 = 3
+  }else {
+    display.textContent += e.target.textContent
+    num1 = e.target.textContent 
+  }
+  } 
+
+  function clearAllValues(){
+    display.textContent = 0;
+  }

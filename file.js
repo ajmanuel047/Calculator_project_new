@@ -56,3 +56,15 @@ function displayNumbers(e){
   function clearAllValues(){
     display.textContent = 0;
   }
+
+  one.addEventListener('click', displayNumbers)
+two.addEventListener('click', displayNumbers)
+three.addEventListener('click', displayNumbers)
+four.addEventListener('click', displayNumbers)
+five.addEventListener('click', displayNumbers)
+six.addEventListener('click', displayNumbers)
+seven.addEventListener('click', displayNumbers)
+eight.addEventListener('click', displayNumbers)
+nine.addEventListener('click', displayNumbers)
+zero.addEventListener('click', displayNumbers)
+clear.addEventListener('click', clearAllValues)

@@ -65,7 +65,7 @@ function operate(operator, num1, num2){
  
 function displayNumbers(e){  
     // let num1 = '';  
-    if(display.textContent == 0){
+    if(display.textContent == 0 || arr.length == 0){
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  
        arr = [num1]
@@ -126,7 +126,12 @@ nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
 addition.addEventListener('click', () => {
-  operate(operator, num1, num2)
-  
- 
+  operate(operator, num1, num2) 
+})
+equal.addEventListener('click', () => {
+  operate(operator, num1, num2) 
+  num1 = '';
+  num2 = '';
+  arr = [];
+  console.log(arr)
 })

@@ -17,6 +17,10 @@ const addition = document.querySelector('#addition');
 const equal = document.querySelector('#equal');
 const back_space = document.querySelector('#back_space');
 
+let num1 = ''
+let num2 = ''
+let operator = ''
+let arr= []
 
 function add(value1, value2){
     return value1 + value2
@@ -35,13 +39,29 @@ function divide(value1, value2){
 }
 
 function operate(operator, num1, num2){
-
+  
+  if(arr.length == 1){
+    arr.push('+')
+    console.log(arr)
+  }
+  console.log(`num1 is ${num1}`)
+  console.log(`num2 is ${num2}`)
+  if(arr.length == 3){
+    display.textContent = add(Number(num1), Number(num2))
+    // num1 = ''
+    num1 = Number(display.textContent)
+    console.log(`new num1 ${num1}`)
+    arr = []
+    arr.push(num1)
+    arr.push('+')
+    console.log(`new arr ${arr}`)
+    
+    console.log(arr)
+    return display.textContent
+  }
   }
 
-let num1 = ''
-let num2 = ''
-let operator = ''
-let arr= []
+
  
 function displayNumbers(e){  
     // let num1 = '';  
@@ -56,7 +76,10 @@ function displayNumbers(e){
     num1 += e.target.textContent   
     arr = [num1]      
     console.log(arr)
-  }  
+  }  else if(arr.length == 2 && num2 !== ''){
+    num1 = display.textContent
+    console.log('e work')
+  }
   
   if(arr.length == 2){
     display.textContent = e.target.textContent;
@@ -67,12 +90,13 @@ function displayNumbers(e){
      // if(num2 != ''){
      //   num2 += e.target.textContent
      // }
-  }else if(arr[1] == "+"){
+  }else if(arr[1] == '+'){
     display.textContent += e.target.textContent;
     num2 += e.target.textContent
     arr.splice(2, 1)  
     arr.push(num2)
      console.log(`num2 is ${num2}`)
+     console.log(arr)
   }
  
   // console.log(num1)
@@ -102,24 +126,7 @@ nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
 addition.addEventListener('click', () => {
-  // operate(operator, num1, num2)
-  if(arr.length == 1){
-    arr.push('+')
-    console.log(arr)
-  }
-  console.log(`num1 is ${num1}`)
-  console.log(`num2 is ${num2}`)
-  if(arr.length == 3){
-    display.textContent = add(Number(num1), Number(num2))
-    num1 = ''
-    num1 = Number(display.textContent)
-    arr = []
-    arr.push(num1)
-    arr.push('+')
-    console.log(`new arr ${arr}`)
-    console.log(`new num1 ${num1}`)
-    console.log(arr)
-    // return display.textContent
-  } 
+  operate(operator, num1, num2)
+  
  
 })

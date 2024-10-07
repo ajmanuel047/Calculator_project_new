@@ -130,8 +130,9 @@ addition.addEventListener('click', () => {
 })
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
-  num1 = '';
-  num2 = '';
-  arr = [];
+  // num1 = '';
+  // num2 = '';
+  // arr = [];
+  arr.splice(1,1)
   console.log(arr)
 })

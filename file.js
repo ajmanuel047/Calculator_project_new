@@ -38,6 +38,8 @@ function divide(value1, value2){
     return value1 / value2
 }
 
+let equalToClicked = 'no'
+
 function operate(operator, num1, num2){
   
   if(arr.length == 1){
@@ -65,10 +67,12 @@ function operate(operator, num1, num2){
  
 function displayNumbers(e){  
     // let num1 = '';  
-    if(display.textContent == 0 || arr.length == 0){
+    if(display.textContent == 0 || equalToClicked == 'yes'){
+      console.log(equalToClicked)
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  
        arr = [num1]
+       equalToClicked = 'no'
        console.log(arr)
   } 
   else if(arr.length < 2){
@@ -109,6 +113,7 @@ function clearAllValues(){
   num1 = 'did num update'
   num2 = ''
   console.clear()
+  equalToClicked = 'no'
   // console.log(arr)
   // console.log(num1)
   // console.log(num2)
@@ -127,6 +132,7 @@ zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
 addition.addEventListener('click', () => {
   operate(operator, num1, num2) 
+  equalToClicked = 'no'
 })
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
@@ -134,5 +140,7 @@ equal.addEventListener('click', () => {
   // num2 = '';
   // arr = [];
   arr.splice(1,1)
+  equalToClicked = 'yes'
+  console.log(equalToClicked)
   console.log(arr)
 })

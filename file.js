@@ -42,15 +42,15 @@ let equalToClicked = 'no'
 
 function operate(operator, num1, num2){
   
-  if(arr.length == 1){
-    arr.push('+')
-    console.log(arr)
-  }
+  // if(arr.length == 1){
+  //   arr.push('+')
+  //   console.log(arr)
+  // }
   console.log(`num1 is ${num1}`)
   console.log(`num2 is ${num2}`)
   if(arr.length == 3){
     display.textContent = add(Number(num1), Number(num2))
-    // num1 = ''
+    
     num1 = Number(display.textContent)
     console.log(`new num1 ${num1}`)
     arr = []
@@ -66,7 +66,7 @@ function operate(operator, num1, num2){
 
  
 function displayNumbers(e){  
-    // let num1 = '';  
+    
     if(display.textContent == 0 || equalToClicked == 'yes'){
       console.log(equalToClicked)
        display.textContent = e.target.textContent;
@@ -89,11 +89,8 @@ function displayNumbers(e){
     display.textContent = e.target.textContent;
     num2 = e.target.textContent  
     arr.push(num2)    
-    // console.log(num2)
     console.log(arr)
-     // if(num2 != ''){
-     //   num2 += e.target.textContent
-     // }
+ 
   }else if(arr[1] == '+'){
     display.textContent += e.target.textContent;
     num2 += e.target.textContent
@@ -103,7 +100,7 @@ function displayNumbers(e){
      console.log(arr)
   }
  
-  // console.log(num1)
+  
    }  
   
 
@@ -114,9 +111,7 @@ function clearAllValues(){
   num2 = ''
   console.clear()
   equalToClicked = 'no'
-  // console.log(arr)
-  // console.log(num1)
-  // console.log(num2)
+  
   }
 
 one.addEventListener('click', displayNumbers)
@@ -130,15 +125,24 @@ eight.addEventListener('click', displayNumbers)
 nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
-addition.addEventListener('click', () => {
-  operate(operator, num1, num2) 
+addition.addEventListener('click', (e) => {
+   
+  //  console.log(e.target.textContent)
+  if(arr.length == 1){
+    arr.push(e.target.textContent) 
+    console.log(arr)
+  }
+  operate(operator, num1, num2)
+  
   equalToClicked = 'no'
 })
+subtraction.addEventListener('click', () => {
+  
+})
+
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
-  // num1 = '';
-  // num2 = '';
-  // arr = [];
+
   arr.splice(1,1)
   equalToClicked = 'yes'
   console.log(equalToClicked)

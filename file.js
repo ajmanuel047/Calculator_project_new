@@ -41,29 +41,38 @@ function divide(value1, value2){
 let equalToClicked = 'no'
 
 function operate(operator, num1, num2){
-  
-  // if(arr.length == 1){
-  //   arr.push('+')
-  //   console.log(arr)
-  // }
   console.log(`num1 is ${num1}`)
   console.log(`num2 is ${num2}`)
-  if(arr.length == 3){
-    display.textContent = add(Number(num1), Number(num2))
+  console.log(`operator is ${operator}`)
+  if(operator !== '' && arr.length == 3){
     
-    num1 = Number(display.textContent)
-    console.log(`new num1 ${num1}`)
-    arr = []
-    arr.push(num1)
-    arr.push('+')
-    console.log(`new arr ${arr}`)
-    
-    console.log(arr)
-    return display.textContent
+    if(operator == '+'){
+      display.textContent = add(Number(num1), Number(num2))
+      num1 = Number(display.textContent)
+      console.log(`new num1 ${num1}`)
+      arr = []
+      arr.push(num1)      
+      arr.push('+')
+      operator = '+'
+      console.log(`operator is ${operator}`)
+      console.log(`new arr ${arr}`)
+      
+      console.log(arr)
+    }  if(operator == '-'){
+      display.textContent = subtract(Number(num1), Number(num2))
+      num1 = Number(display.textContent)
+      console.log(`new num1 ${num1}`)
+      arr = []
+      arr.push(num1)
+      arr.push('-')
+      operator = '-'
+      console.log(`operator is ${operator}`)
+      console.log(`new arr ${arr}`)
+      
+      console.log(arr)
+    }
   }
   }
-
-
  
 function displayNumbers(e){  
     
@@ -91,7 +100,7 @@ function displayNumbers(e){
     arr.push(num2)    
     console.log(arr)
  
-  }else if(arr[1] == '+'){
+  }else if(arr[1] == '+' || arr[1] == '-'){
     display.textContent += e.target.textContent;
     num2 += e.target.textContent
     arr.splice(2, 1)  
@@ -126,25 +135,33 @@ nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
 addition.addEventListener('click', (e) => {
-   
-  //  console.log(e.target.textContent)
-  if(arr.length == 1){
-    arr.push(e.target.textContent) 
+   if(arr.length == 1){
+    operator = '+'
+    arr.push('+')
     console.log(arr)
-  }
-  operate(operator, num1, num2)
-  
-  equalToClicked = 'no'
+  } 
+    operate(operator, num1, num2)
+    equalToClicked = 'no'
+    operator = '+'
 })
-subtraction.addEventListener('click', () => {
-  
+subtraction.addEventListener('click', (e) => { 
+  if(arr.length == 1){
+    operator = '-'
+    arr.push('-')
+    console.log(arr)
+  } 
+   operate(operator, num1, num2)   
+   equalToClicked = 'no'
+   operator = '-'
 })
 
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
-
   arr.splice(1,1)
   equalToClicked = 'yes'
   console.log(equalToClicked)
   console.log(arr)
 })
+
+// bugs 0 - a number not working right
+// 40 - 80 - // tried changing it to plus did not work

@@ -76,7 +76,7 @@ function operate(operator, num1, num2){
  
 function displayNumbers(e){  
     
-    if(display.textContent == 0 || equalToClicked == 'yes'){
+    if(arr.length == 0 || equalToClicked == 'yes'){
       console.log(equalToClicked)
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  
@@ -120,7 +120,7 @@ function clearAllValues(){
   num2 = ''
   console.clear()
   equalToClicked = 'no'
-  
+  operator = ''
   }
 
 one.addEventListener('click', displayNumbers)
@@ -153,6 +153,10 @@ subtraction.addEventListener('click', (e) => {
    operate(operator, num1, num2)   
    equalToClicked = 'no'
    operator = '-'
+   if(arr.length == 0){
+    arr.push('-')
+    console.log(arr)
+   }
 })
 
 equal.addEventListener('click', () => {
@@ -164,4 +168,5 @@ equal.addEventListener('click', () => {
 })
 
 // bugs 0 - a number not working right
-// 40 - 80 - // tried changing it to plus did not work
+// (solved)40 - 80 - // tried changing it to plus did not work
+// (solved)clicking a sign more than once repeats it

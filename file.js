@@ -84,6 +84,19 @@ function operate(operator, num1, num2){
       
       console.log(arr)
     }
+    if(operator == '/'){
+      display.textContent = divide(Number(num1), Number(num2))
+      num1 = Number(display.textContent)
+      console.log(`new num1 ${num1}`)
+      arr = []
+      arr.push(num1)
+      arr.push('/')
+      operator = '/'
+      console.log(`operator is ${operator}`)
+      console.log(`new arr ${arr}`)
+      
+      console.log(arr)
+    }
   }
   }
  
@@ -113,7 +126,7 @@ function displayNumbers(e){
     arr.push(num2)    
     console.log(arr)
  
-  }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x'){
+  }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
     display.textContent += e.target.textContent;
     num2 += e.target.textContent
     arr.splice(2, 1)  
@@ -172,7 +185,6 @@ subtraction.addEventListener('click', (e) => {
   //  }
 })
 multiplication.addEventListener('click', (e) => {
-  document.body.style.backgroundColor = 'green'
   if(arr.length == 1){
     operator = 'x'
     arr.push('x')
@@ -181,6 +193,17 @@ multiplication.addEventListener('click', (e) => {
     operate(operator, num1, num2)
     equalToClicked = 'no'
     operator = 'x'
+})
+division.addEventListener('click', (e) => {
+  document.body.style.backgroundColor = 'green'
+  if(arr.length == 1){
+    operator = '/'
+    arr.push('/')
+    console.log(arr)
+  } 
+    operate(operator, num1, num2)
+    equalToClicked = 'no'
+    operator = '/'
 })
 
 equal.addEventListener('click', () => {

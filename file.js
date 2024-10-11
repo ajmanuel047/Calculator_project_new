@@ -71,6 +71,19 @@ function operate(operator, num1, num2){
       
       console.log(arr)
     }
+    if(operator == 'x'){
+      display.textContent = multiply(Number(num1), Number(num2))
+      num1 = Number(display.textContent)
+      console.log(`new num1 ${num1}`)
+      arr = []
+      arr.push(num1)
+      arr.push('x')
+      operator = 'x'
+      console.log(`operator is ${operator}`)
+      console.log(`new arr ${arr}`)
+      
+      console.log(arr)
+    }
   }
   }
  
@@ -100,7 +113,7 @@ function displayNumbers(e){
     arr.push(num2)    
     console.log(arr)
  
-  }else if(arr[1] == '+' || arr[1] == '-'){
+  }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x'){
     display.textContent += e.target.textContent;
     num2 += e.target.textContent
     arr.splice(2, 1)  
@@ -148,15 +161,26 @@ subtraction.addEventListener('click', (e) => {
   if(arr.length == 1){
     operator = '-'
     arr.push('-')
-    console.log(arr)
+    // console.log(arr)
   } 
    operate(operator, num1, num2)   
    equalToClicked = 'no'
    operator = '-'
-   if(arr.length == 0){
-    arr.push('-')
+  //  if(arr.length == 0){
+  //   arr.push('-')
+  //   console.log(arr)
+  //  }
+})
+multiplication.addEventListener('click', (e) => {
+  document.body.style.backgroundColor = 'green'
+  if(arr.length == 1){
+    operator = 'x'
+    arr.push('x')
     console.log(arr)
-   }
+  } 
+    operate(operator, num1, num2)
+    equalToClicked = 'no'
+    operator = 'x'
 })
 
 equal.addEventListener('click', () => {
@@ -167,6 +191,11 @@ equal.addEventListener('click', () => {
   console.log(arr)
 })
 
-// bugs 0 - a number not working right
+// (solved)bugs 0 - a number not working right
 // (solved)40 - 80 - // tried changing it to plus did not work
 // (solved)clicking a sign more than once repeats it
+// fix the bug - then a number. if i comment  //  if(arr.length == 0){
+  //   arr.push('-')
+  //   console.log(arr)
+  //  }, the bug 0 - a number returns. I think it still works though 
+  // weda i comment or uncomment it

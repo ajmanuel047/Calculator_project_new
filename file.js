@@ -80,8 +80,7 @@ function operate(operator, num1, num2){
       arr.push('x')
       operator = 'x'
       console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)
-      
+      console.log(`new arr ${arr}`)      
       console.log(arr)
     }
     if(operator == '/'){
@@ -93,8 +92,7 @@ function operate(operator, num1, num2){
       arr.push('/')
       operator = '/'
       console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)
-      
+      console.log(`new arr ${arr}`)      
       console.log(arr)
     }
   }
@@ -205,6 +203,13 @@ division.addEventListener('click', (e) => {
     equalToClicked = 'no'
     operator = '/'
 })
+percentage.addEventListener('click', () => {
+  document.body.style.backgroundColor = 'green';
+  display.textContent = num1 / 100;
+  num1 = display.textContent
+  arr = [num1]
+  console.log(arr)
+})
 
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
@@ -213,6 +218,8 @@ equal.addEventListener('click', () => {
   console.log(equalToClicked)
   console.log(arr)
 })
+
+
 
 // (solved)bugs 0 - a number not working right
 // (solved)40 - 80 - // tried changing it to plus did not work

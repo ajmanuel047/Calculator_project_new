@@ -107,7 +107,7 @@ function displayNumbers(e){
    console.log('test')
       console.log(arr)
  }
-    else if(display.textContent == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
+  else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
       console.log(equalToClicked)
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  
@@ -188,6 +188,9 @@ subtraction.addEventListener('click', (e) => {
   } else if(arr.length == 0){
     arr.push('-')
     console.log(arr)
+  } 
+  if(arr[0] == '0'){
+    arr.push('-')
   }
    operate(operator, num1, num2)   
    equalToClicked = 'no'
@@ -222,7 +225,7 @@ division.addEventListener('click', (e) => {
   percentClicked = 'no'
 })
 percentage.addEventListener('click', () => {
-  document.body.style.backgroundColor = 'green';
+ 
   display.textContent = display.textContent / 100;
   num1 = display.textContent
   arr = [num1]
@@ -230,6 +233,11 @@ percentage.addEventListener('click', () => {
   console.log(arr)
   console.log(percentClicked)
 })
+plus_minus.addEventListener('click', () => {
+  document.body.style.backgroundColor = 'green';
+  
+})
+
 
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 

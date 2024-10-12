@@ -100,6 +100,12 @@ function operate(operator, num1, num2){
   }
  
 function displayNumbers(e){  
+  if(display.textContent == '-0'){
+    display.textContent = `-`
+    num1 = display.textContent
+    arr.push(`-${e.target.textContent}`)
+    console.log(arr)
+  }
     if(arr[0] == '-'){
    arr = [Number(`-${e.target.textContent}`)]
      num1 = Number(`-${e.target.textContent}`)
@@ -149,12 +155,12 @@ function displayNumbers(e){
 function clearAllValues(){
   display.textContent = 0;
   arr = [];
-  num1 = 'did num update'
+  num1 = ''
   num2 = ''
   console.clear()
   equalToClicked = 'no'
   operator = ''
-  num1 = display.textContent;
+  
   console.log(num1)
   }
 
@@ -184,7 +190,7 @@ subtraction.addEventListener('click', (e) => {
   if(arr.length == 1){
     operator = '-'
     arr.push('-')
-    // console.log(arr)
+     console.log(arr)
   } else if(arr.length == 0){
     arr.push('-')
     console.log(arr)
@@ -224,6 +230,7 @@ division.addEventListener('click', (e) => {
     operator = '/'
   percentClicked = 'no'
 })
+
 percentage.addEventListener('click', () => {
  
   display.textContent = display.textContent / 100;
@@ -233,9 +240,41 @@ percentage.addEventListener('click', () => {
   console.log(arr)
   console.log(percentClicked)
 })
+
 plus_minus.addEventListener('click', () => {
   document.body.style.backgroundColor = 'green';
-  
+  if(display.textContent == '0'){
+    display.textContent = '-0'
+    // arr.push(display.textContent)
+    // console.log(arr)
+  }
+  if(display.textContent > 0 && arr.length < 3){
+    display.textContent = `-${display.textContent}`
+    num1 =  display.textContent
+    console.log(num1)
+    arr.splice(0, 1, num1)
+    
+    console.log(arr)
+  }else if(display.textContent < 0 && arr.length < 3){
+    display.textContent = Math.abs(`${display.textContent}`)
+    num1 =  display.textContent
+    arr.splice(0, 1, num1)
+    console.log(arr)
+  }
+    
+    if(num2 > 0 && arr.length == 3){
+    display.textContent = `-${num2}`
+    num2 = `-${num2}`
+    // arr.push(operator)
+    arr.splice(2, 1, num2)
+    console.log(arr)
+  }else if(num2 < 0  && arr.length == 3){
+    display.textContent = Math.abs(num2)
+    num2 = display.textContent
+    // arr.push(operator)
+    arr.splice(2, 1, num2)
+    console.log(arr)
+  }
 })
 
 
@@ -243,19 +282,9 @@ equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
   arr.splice(1,1)
   equalToClicked = 'yes'
-
+  // num1 = ''
+  // num2 = ''
   console.log(equalToClicked)
   console.log(arr)
 })
 
-
-
-// (solved)bugs 0 - a number not working right
-// (solved)40 - 80 - // tried changing it to plus did not work
-// (solved)clicking a sign more than once repeats it
-// fix the bug - then a number. if i comment  //  if(arr.length == 0){
-  //   arr.push('-')
-  //   console.log(arr)
-  //  }, the bug 0 - a number returns. I think it still works though 
-  // weda i comment or uncomment it
-  // (solved)bug AC then percent giving NAN

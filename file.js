@@ -38,7 +38,8 @@ function divide(value1, value2){
     return value1 / value2
 }
 
-let equalToClicked = 'no'
+let equalToClicked = 'no';
+let percentClicked = 'no'
 
 function operate(operator, num1, num2){
   console.log(`num1 is ${num1}`)
@@ -99,16 +100,23 @@ function operate(operator, num1, num2){
   }
  
 function displayNumbers(e){  
-    
-    if(arr.length == 0 || equalToClicked == 'yes'){
+    if(arr[0] == '-'){
+   arr = [`-${e.target.textContent}`]
+     num1 = `-${e.target.textContent}`
+   console.log('test')
+      console.log(arr)
+ }
+    if(display.textContent == 0 || equalToClicked == 'yes' || percentClicked == 'yes' && arr[0] != '-'){
       console.log(equalToClicked)
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  
        arr = [num1]
        equalToClicked = 'no'
+      //  percentClicked = 'no'
+       console.log(percentClicked)
        console.log(arr)
   } 
-  else if(arr.length < 2){
+  else if(arr.length == 1){
     display.textContent += e.target.textContent
     num1 += e.target.textContent   
     arr = [num1]      
@@ -145,6 +153,8 @@ function clearAllValues(){
   console.clear()
   equalToClicked = 'no'
   operator = ''
+  num1 = display.textContent;
+  console.log(num1)
   }
 
 one.addEventListener('click', displayNumbers)
@@ -167,16 +177,21 @@ addition.addEventListener('click', (e) => {
     operate(operator, num1, num2)
     equalToClicked = 'no'
     operator = '+'
+  percentClicked = 'no'
 })
 subtraction.addEventListener('click', (e) => { 
   if(arr.length == 1){
     operator = '-'
     arr.push('-')
     // console.log(arr)
-  } 
+  } else if(arr.length == 0){
+    arr.push('-')
+    console.log(arr)
+  }
    operate(operator, num1, num2)   
    equalToClicked = 'no'
    operator = '-'
+  percentClicked = 'no'
   //  if(arr.length == 0){
   //   arr.push('-')
   //   console.log(arr)
@@ -191,6 +206,7 @@ multiplication.addEventListener('click', (e) => {
     operate(operator, num1, num2)
     equalToClicked = 'no'
     operator = 'x'
+  percentClicked = 'no'
 })
 division.addEventListener('click', (e) => {
   document.body.style.backgroundColor = 'green'
@@ -202,19 +218,23 @@ division.addEventListener('click', (e) => {
     operate(operator, num1, num2)
     equalToClicked = 'no'
     operator = '/'
+  percentClicked = 'no'
 })
 percentage.addEventListener('click', () => {
   document.body.style.backgroundColor = 'green';
-  display.textContent = num1 / 100;
+  display.textContent = display.textContent / 100;
   num1 = display.textContent
   arr = [num1]
+  percentClicked = 'yes'
   console.log(arr)
+  console.log(percentClicked)
 })
 
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
   arr.splice(1,1)
   equalToClicked = 'yes'
+
   console.log(equalToClicked)
   console.log(arr)
 })
@@ -229,3 +249,4 @@ equal.addEventListener('click', () => {
   //   console.log(arr)
   //  }, the bug 0 - a number returns. I think it still works though 
   // weda i comment or uncomment it
+  // (solved)bug AC then percent giving NAN

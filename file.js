@@ -101,12 +101,13 @@ function operate(operator, num1, num2){
  
 function displayNumbers(e){  
     if(arr[0] == '-'){
-   arr = [`-${e.target.textContent}`]
-     num1 = `-${e.target.textContent}`
+   arr = [Number(`-${e.target.textContent}`)]
+     num1 = Number(`-${e.target.textContent}`)
+     display.textContent =  Number(`-${e.target.textContent}`)
    console.log('test')
       console.log(arr)
  }
-    if(display.textContent == 0 || equalToClicked == 'yes' || percentClicked == 'yes' && arr[0] != '-'){
+    else if(display.textContent == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
       console.log(equalToClicked)
        display.textContent = e.target.textContent;
        num1 = e.target.textContent  

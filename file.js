@@ -16,6 +16,7 @@ const subtraction = document.querySelector('#subtraction');
 const addition = document.querySelector('#addition');
 const equal = document.querySelector('#equal');
 const back_space = document.querySelector('#back_space');
+const decimal = document.querySelector('#decimal')
 
 let num1 = ''
 let num2 = ''
@@ -68,8 +69,7 @@ function operate(operator, num1, num2){
       arr.push('-')
       operator = '-'
       console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)
-      
+      console.log(`new arr ${arr}`)      
       console.log(arr)
     }
     if(operator == 'x'){
@@ -99,7 +99,72 @@ function operate(operator, num1, num2){
   }
   }
  
+// let buttonValues = Array.from(document.querySelectorAll('button'))
+// console.log(buttonValues) 
+
+// console.log(document.all)
+    let buttonNumbers = document.querySelectorAll('.number')
+  buttonNumbers.forEach(button => {
+    console.log(button.textContent)
+    window.addEventListener('keydown', (e) => {
+    document.body.style.backgroundColor = 'orange'
+    if(e.key == button.textContent){
+      if(display.textContent == '-0'){
+    display.textContent = `-`
+    num1 = `-${e.key}`
+    arr.push(`-${e.key}`)
+    console.log(arr)
+  }
+    if(arr[0] == '-'){
+   arr = [Number(`-${e.key}`)]
+     num1 = Number(`-${e.key}`)
+     display.textContent =  Number(`-${e.key}`)
+   console.log('test')
+      console.log(arr)  
+ }
+  else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
+      console.log(equalToClicked)
+       display.textContent = e.key;
+       num1 = e.key  
+       arr = [num1]
+       equalToClicked = 'no'
+       console.log(percentClicked)
+       console.log(arr)
+  } 
+  else if(arr.length == 1){
+    display.textContent += e.key
+    num1 = display.textContent  
+    arr = [num1]      
+    console.log(arr)
+  }  else if(arr.length == 2 && num2 !== ''){
+    num1 = display.textContent
+    console.log('e work')
+  }
+  
+  if(arr.length == 2){
+    display.textContent = e.key;
+    num2 = e.key 
+    arr.push(num2)    
+    console.log(arr)
+ 
+  }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+    display.textContent += e.key;
+    num2 += e.key 
+    arr.splice(2, 1)  
+    arr.push(num2)
+     console.log(`num2 is ${num2}`)
+     console.log(arr)
+  }
+    }
+     console.log(e.key)
+  })
+})
+
+ 
+
+
 function displayNumbers(e){  
+  console.log(e)
   if(display.textContent == '-0'){
     display.textContent = `-`
     num1 = display.textContent
@@ -119,15 +184,25 @@ function displayNumbers(e){
        num1 = e.target.textContent  
        arr = [num1]
        equalToClicked = 'no'
-      //  percentClicked = 'no'
        console.log(percentClicked)
        console.log(arr)
   } 
   else if(arr.length == 1){
+    console.log(`${typeof num1}`)
+     console.log(`${num1}`)
+    if(num1.includes('.')){
     display.textContent += e.target.textContent
-    num1 += e.target.textContent   
-    arr = [num1]      
-    console.log(arr)
+    num1 = display.textContent   
+    arr = [num1]  
+          console.log(`This?  ${arr}`)
+    
+    } else {
+      display.textContent += e.target.textContent
+      num1 = display.textContent  
+      arr = [num1]  
+      console.log(`Or this? ${num1}`)
+    } 
+
   }  else if(arr.length == 2 && num2 !== ''){
     num1 = display.textContent
     console.log('e work')
@@ -147,11 +222,9 @@ function displayNumbers(e){
      console.log(`num2 is ${num2}`)
      console.log(arr)
   }
- 
   
    }  
   
-
 function clearAllValues(){
   display.textContent = 0;
   arr = [];
@@ -175,6 +248,9 @@ eight.addEventListener('click', displayNumbers)
 nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
+
+
+
 addition.addEventListener('click', (e) => {
    if(arr.length == 1){
     operator = '+'
@@ -184,13 +260,14 @@ addition.addEventListener('click', (e) => {
     operate(operator, num1, num2)
     equalToClicked = 'no'
     operator = '+'
-  percentClicked = 'no'
+    percentClicked = 'no'
 })
+
 subtraction.addEventListener('click', (e) => { 
   if(arr.length == 1){
     operator = '-'
     arr.push('-')
-     console.log(arr)
+    console.log(arr)
   } else if(arr.length == 0){
     arr.push('-')
     console.log(arr)
@@ -201,23 +278,21 @@ subtraction.addEventListener('click', (e) => {
    operate(operator, num1, num2)   
    equalToClicked = 'no'
    operator = '-'
-  percentClicked = 'no'
-  //  if(arr.length == 0){
-  //   arr.push('-')
-  //   console.log(arr)
-  //  }
+   percentClicked = 'no'
 })
+
 multiplication.addEventListener('click', (e) => {
   if(arr.length == 1){
     operator = 'x'
     arr.push('x')
     console.log(arr)
   } 
-    operate(operator, num1, num2)
-    equalToClicked = 'no'
-    operator = 'x'
+  operate(operator, num1, num2)
+  equalToClicked = 'no'
+  operator = 'x'
   percentClicked = 'no'
 })
+
 division.addEventListener('click', (e) => {
   document.body.style.backgroundColor = 'green'
   if(arr.length == 1){
@@ -225,14 +300,13 @@ division.addEventListener('click', (e) => {
     arr.push('/')
     console.log(arr)
   } 
-    operate(operator, num1, num2)
-    equalToClicked = 'no'
-    operator = '/'
+  operate(operator, num1, num2)
+  equalToClicked = 'no'
+  operator = '/'
   percentClicked = 'no'
 })
 
-percentage.addEventListener('click', () => {
- 
+percentage.addEventListener('click', () => { 
   display.textContent = display.textContent / 100;
   num1 = display.textContent
   arr = [num1]
@@ -246,38 +320,56 @@ plus_minus.addEventListener('click', () => {
   if(display.textContent == '0'){
     display.textContent = '-0'
     // arr.push(display.textContent)
-    // console.log(arr)
+    console.log(arr)
+  } else if(display.textContent == '-0'){
+    display.textContent = '0'
+    console.log(arr)
   }
   if(display.textContent > 0 && arr.length < 3){
     display.textContent = `-${display.textContent}`
     num1 =  display.textContent
     console.log(num1)
-    arr.splice(0, 1, num1)
-    
+    arr.splice(0, 1, num1)    
     console.log(arr)
   }else if(display.textContent < 0 && arr.length < 3){
     display.textContent = Math.abs(`${display.textContent}`)
     num1 =  display.textContent
     arr.splice(0, 1, num1)
     console.log(arr)
-  }
-    
+  }    
     if(num2 > 0 && arr.length == 3){
     display.textContent = `-${num2}`
     num2 = `-${num2}`
-    // arr.push(operator)
     arr.splice(2, 1, num2)
     console.log(arr)
   }else if(num2 < 0  && arr.length == 3){
     display.textContent = Math.abs(num2)
     num2 = display.textContent
-    // arr.push(operator)
     arr.splice(2, 1, num2)
     console.log(arr)
   }
 })
 
-
+decimal.addEventListener('click', () => {
+  document.body.style.backgroundColor = 'green'
+ if(!display.textContent.includes('.')){
+  if(arr.length < 2){
+        display.textContent += '.'
+    
+  arr = [display.textContent]
+    num1 = display.textContent
+  console.log(arr)
+  }else if(arr.length > 2){
+            display.textContent += '.'
+    
+    arr.splice(2, 1)
+    arr.push(display.textContent)
+    num2 = display.textContent
+  console.log(arr)
+  }
+ }
+})
+//ss
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
   arr.splice(1,1)
@@ -288,3 +380,7 @@ equal.addEventListener('click', () => {
   console.log(arr)
 })
 
+// make values in screen not exceed 9
+// round up the values
+// display a message if it intends to do that
+// try and loop through the array.from

@@ -18,6 +18,9 @@ const equal = document.querySelector('#equal');
 const back_space = document.querySelector('#back_space');
 const decimal = document.querySelector('#decimal')
 const error_message = document.querySelector('#error_message');
+const deleteNum = document.querySelector('#back_space')
+
+
 
 let num1 = ''
 let num2 = ''
@@ -449,6 +452,41 @@ decimal.addEventListener('click', () => {
   }
  }
 })
+
+deleteNum.addEventListener('click', () => {
+  document.body.style.backgroundColor = 'pink'
+  if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
+      display.textContent = display.textContent.slice(0, -1)
+      num1 = display.textContent
+      arr = [num1]
+      console.log(arr)
+      console.log(num1)
+ 
+  } else if(num1.length == 1 && arr.length < 3){
+      display.textContent = display.textContent.slice(0, -1)
+      display.textContent = '0'
+      num1 = ''
+      arr = []
+      console.log(arr)
+    console.log(num1)
+    }
+  if(arr.length == 3 && num2.length != 1){
+     display.textContent = display.textContent.slice(0, -1)
+      num2 = display.textContent
+      arr.splice(2, 1)
+      arr.push(num2)
+      console.log(arr)
+    console.log(num2)
+  } else if(num2.length == 1){
+      
+      display.textContent = '0'
+      num2 = display.textContent
+      arr = []
+      console.log(arr)
+    console.log(num2)
+    }
+})
+
 //ss
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
@@ -466,3 +504,4 @@ equal.addEventListener('click', () => {
 // round up the values
 // display a message if it intends to do that
 // try and loop through the array.from
+// bug putting dot after equal to is not adding dot

@@ -326,6 +326,13 @@ addition.addEventListener('click', (e) => {
     console.log(arr)
   } 
     operate(operator, num1, num2)
+    if(display.textContent.length > 9){
+      display.textContent = display.textContent.slice(0, 9)
+      console.log('testingigng')
+      if(display.textContent.includes('.')){
+        display.textContent = Number(display.textContent).toFixed(8)
+      }
+    }
     equalToClicked = 'no'
     operator = '+'
     percentClicked = 'no'
@@ -344,7 +351,14 @@ subtraction.addEventListener('click', (e) => {
   if(arr[0] == '0'){
     arr.push('-')
   }
-   operate(operator, num1, num2)   
+   operate(operator, num1, num2)  
+     if(display.textContent.length > 9){
+    display.textContent = display.textContent.slice(0, 9)
+    console.log('testingigng')
+    if(display.textContent.includes('.')){
+      display.textContent = Number(display.textContent).toFixed(8)
+    }
+  } 
    equalToClicked = 'no'
    operator = '-'
    percentClicked = 'no'
@@ -358,6 +372,13 @@ multiplication.addEventListener('click', (e) => {
     console.log(arr)
   } 
   operate(operator, num1, num2)
+  if(display.textContent.length > 9){
+    display.textContent = display.textContent.slice(0, 9)
+    console.log('testingigng')
+    if(display.textContent.includes('.')){
+      display.textContent = Number(display.textContent).toFixed(8)
+    }
+  }
   equalToClicked = 'no'
   operator = 'x'
   percentClicked = 'no'
@@ -372,6 +393,13 @@ division.addEventListener('click', (e) => {
     console.log(arr)
   } 
   operate(operator, num1, num2)
+  if(display.textContent.length > 9){
+    display.textContent = display.textContent.slice(0, 9)
+    console.log('testingigng')
+    if(display.textContent.includes('.')){
+      display.textContent = Number(display.textContent).toFixed(8)
+    }
+  }
   equalToClicked = 'no'
   operator = '/'
   percentClicked = 'no'
@@ -459,6 +487,7 @@ deleteNum.addEventListener('click', () => {
       display.textContent = display.textContent.slice(0, -1)
       num1 = display.textContent
       arr = [num1]
+      array.pop()
       console.log(arr)
       console.log(num1)
  
@@ -468,6 +497,7 @@ deleteNum.addEventListener('click', () => {
       num1 = ''
       arr = []
       console.log(arr)
+      array.pop()
     console.log(num1)
     }
   if(arr.length == 3 && num2.length != 1){
@@ -476,12 +506,14 @@ deleteNum.addEventListener('click', () => {
       arr.splice(2, 1)
       arr.push(num2)
       console.log(arr)
+      array.pop()
     console.log(num2)
   } else if(num2.length == 1){
       
       display.textContent = '0'
       num2 = display.textContent
       arr = []
+      array.pop()
       console.log(arr)
     console.log(num2)
     }
@@ -498,10 +530,17 @@ equal.addEventListener('click', () => {
   console.log(equalToClicked)
   console.log(arr)
   array = []
+  if(display.textContent.length > 9){
+    display.textContent = display.textContent.slice(0, 9)
+    console.log('testingigng')
+    if(display.textContent.includes('.')){
+      display.textContent = Number(display.textContent).toFixed(8)
+    }
+  }
 })
 
 // make values in screen not exceed 9
 // round up the values
-// display a message if it intends to do that
-// try and loop through the array.from
+// display a message if it intends to do that (done)
+// try and loop through the array.from (done)
 // bug putting dot after equal to is not adding dot

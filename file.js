@@ -87,17 +87,34 @@ function operate(operator, num1, num2){
       console.log(arr)
     }
     if(operator == '/'){
-      display.textContent = divide(Number(num1), Number(num2))
-      num1 = Number(display.textContent)
-      console.log(`new num1 ${num1}`)
-      arr = []
-      arr.push(num1)
-      arr.push('/')
-      operator = '/'
-      console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)      
-      console.log(arr)
-    }
+      if(num2 != 0){
+        display.textContent = divide(Number(num1), Number(num2))
+        num1 = Number(display.textContent)
+        console.log(`new num1 ${num1}`)
+        arr = []
+        arr.push(num1)
+        arr.push('/')
+        operator = '/'
+        console.log(`operator is ${operator}`)
+        console.log(`new arr ${arr}`)      
+        console.log(arr)
+      }else if(num2 == 0){         
+        setTimeout(() => {
+          error_message.textContent = 'Divider Should Not Be Zero'
+          display.textContent = ''
+          error_message.style.color = 'red'
+        }, 10);
+
+        setTimeout(() => {
+          error_message.textContent = ''
+        }, 2000);
+
+        setTimeout(() => {
+          error_message.textContent = ''
+          display.textContent = '0'
+        }, 2001);      
+      }
+    } 
   }
   }
  
@@ -281,6 +298,7 @@ function clearAllValues(){
   equalToClicked = 'no'
   operator = ''
   array = []
+  error_message.textContent = ''
   console.log(num1)
   }
 
@@ -435,6 +453,7 @@ decimal.addEventListener('click', () => {
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
   arr.splice(1,1)
+ 
   equalToClicked = 'yes'
   // num1 = ''
   // num2 = ''

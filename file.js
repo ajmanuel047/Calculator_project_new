@@ -105,55 +105,71 @@ function operate(operator, num1, num2){
   buttonNumbers.forEach(button => {
     console.log(button.textContent)
     window.addEventListener('keydown', (e) => {
+      if(array.length < 9){
+        if(e.key == button.textContent){
+          if(display.textContent == '-0'){
+        display.textContent = `-`
+        num1 = `-${e.key}`
+        arr.push(`-${e.key}`)
+        console.log(arr)
+      }
+        if(arr[0] == '-'){
+       arr = [Number(`-${e.key}`)]
+         num1 = Number(`-${e.key}`)
+         display.textContent =  Number(`-${e.key}`)
+       console.log('test')
+          console.log(arr)  
+     }
+      else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
+          console.log(equalToClicked)
+           display.textContent = e.key;
+           num1 = e.key  
+           arr = [num1]
+           array.push(e.key)
+           equalToClicked = 'no'
+           console.log(percentClicked)
+           console.log(arr)
+      } 
+      else if(arr.length == 1){
+        display.textContent += e.key
+        num1 = display.textContent  
+        arr = [num1]      
+        array.push(e.key)
+        console.log(arr)
+        console.log(array)
+      }  else if(arr.length == 2 && num2 !== ''){
+        num1 = display.textContent
+        console.log('e work')
+      }
+      
+      if(arr.length == 2){
+        display.textContent = e.key;
+        num2 = e.key 
+        arr.push(num2)   
+        array.push(e.key) 
+        console.log(arr)
+     
+      }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+        display.textContent += e.key;
+        num2 += e.key 
+        arr.splice(2, 1)  
+        arr.push(num2)
+        array.push(e.key)
+         console.log(`num2 is ${num2}`)
+         console.log(arr)
+      }
+        }
+      } else {
+        setTimeout(()=> {
+          error_message.textContent = 'Can Display 9 Characters'
+          error_message.style.color = 'red'
+        }, 10)
+        setTimeout(()=> {
+          error_message.textContent = ''
+        }, 2000)
+      }
     document.body.style.backgroundColor = 'orange'
-    if(e.key == button.textContent){
-      if(display.textContent == '-0'){
-    display.textContent = `-`
-    num1 = `-${e.key}`
-    arr.push(`-${e.key}`)
-    console.log(arr)
-  }
-    if(arr[0] == '-'){
-   arr = [Number(`-${e.key}`)]
-     num1 = Number(`-${e.key}`)
-     display.textContent =  Number(`-${e.key}`)
-   console.log('test')
-      console.log(arr)  
- }
-  else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
-      console.log(equalToClicked)
-       display.textContent = e.key;
-       num1 = e.key  
-       arr = [num1]
-       equalToClicked = 'no'
-       console.log(percentClicked)
-       console.log(arr)
-  } 
-  else if(arr.length == 1){
-    display.textContent += e.key
-    num1 = display.textContent  
-    arr = [num1]      
-    console.log(arr)
-  }  else if(arr.length == 2 && num2 !== ''){
-    num1 = display.textContent
-    console.log('e work')
-  }
-  
-  if(arr.length == 2){
-    display.textContent = e.key;
-    num2 = e.key 
-    arr.push(num2)    
-    console.log(arr)
- 
-  }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
-    display.textContent += e.key;
-    num2 += e.key 
-    arr.splice(2, 1)  
-    arr.push(num2)
-     console.log(`num2 is ${num2}`)
-     console.log(arr)
-  }
-    }
+    
      console.log(e.key)
   })
 })
@@ -352,37 +368,48 @@ percentage.addEventListener('click', () => {
 
 plus_minus.addEventListener('click', () => {
   document.body.style.backgroundColor = 'green';
-  if(display.textContent == '0'){
-    display.textContent = '-0'
-    // arr.push(display.textContent)
-    console.log(arr)
-  } else if(display.textContent == '-0'){
-    display.textContent = '0'
-    console.log(arr)
+  if(array.length < 9){
+    if(display.textContent == '0'){
+      display.textContent = '-0'
+      // arr.push(display.textContent)
+      console.log(arr)
+    } else if(display.textContent == '-0'){
+      display.textContent = '0'
+      console.log(arr)
+    }
+    if(display.textContent > 0 && arr.length < 3){
+      display.textContent = `-${display.textContent}`
+      num1 =  display.textContent
+      console.log(num1)
+      arr.splice(0, 1, num1)    
+      console.log(arr)
+    }else if(display.textContent < 0 && arr.length < 3){
+      display.textContent = Math.abs(`${display.textContent}`)
+      num1 =  display.textContent
+      arr.splice(0, 1, num1)
+      console.log(arr)
+    }    
+      if(num2 > 0 && arr.length == 3){
+      display.textContent = `-${num2}`
+      num2 = `-${num2}`
+      arr.splice(2, 1, num2)
+      console.log(arr)
+    }else if(num2 < 0  && arr.length == 3){
+      display.textContent = Math.abs(num2)
+      num2 = display.textContent
+      arr.splice(2, 1, num2)
+      console.log(arr)
+    }
+  }else {
+    setTimeout(()=> {
+      error_message.textContent = 'Delete One Character'
+    }, 10)
+    setTimeout(()=> {
+      error_message.textContent = ''
+    }, 3000)
+    error_message.textContent = ''
   }
-  if(display.textContent > 0 && arr.length < 3){
-    display.textContent = `-${display.textContent}`
-    num1 =  display.textContent
-    console.log(num1)
-    arr.splice(0, 1, num1)    
-    console.log(arr)
-  }else if(display.textContent < 0 && arr.length < 3){
-    display.textContent = Math.abs(`${display.textContent}`)
-    num1 =  display.textContent
-    arr.splice(0, 1, num1)
-    console.log(arr)
-  }    
-    if(num2 > 0 && arr.length == 3){
-    display.textContent = `-${num2}`
-    num2 = `-${num2}`
-    arr.splice(2, 1, num2)
-    console.log(arr)
-  }else if(num2 < 0  && arr.length == 3){
-    display.textContent = Math.abs(num2)
-    num2 = display.textContent
-    arr.splice(2, 1, num2)
-    console.log(arr)
-  }
+ 
 })
 
 decimal.addEventListener('click', () => {

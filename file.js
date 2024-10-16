@@ -212,12 +212,14 @@ function operate(operator, num1, num2){
         setTimeout(()=> {
           error_message.textContent = 'Can Display 9 Characters'
           error_message.style.color = 'red'
+          document.body.style.backgroundColor = 'black'
         }, 10)
         setTimeout(()=> {
           error_message.textContent = ''
+           document.body.style.backgroundColor = 'white'
         }, 2000)
       }
-    document.body.style.backgroundColor = 'orange'
+    // document.body.style.backgroundColor = 'orange'
     
      console.log(e.key)
   })
@@ -274,6 +276,7 @@ function displayNumbers(e){
             console.log(arr)
             console.log(array)
             console.log(array.length)
+        // console.log('e show')
       } else {
         display.textContent += e.target.textContent
         num1 = display.textContent  
@@ -333,12 +336,26 @@ function displayNumbers(e){
     setTimeout(()=> {
       error_message.textContent = 'Can Display 9 Characters'
       error_message.style.color = 'red'
+             document.body.style.backgroundColor = 'black'
+      console.log('is it still working')
     }, 10)
     setTimeout(()=> {
       error_message.textContent = ''
+             document.body.style.backgroundColor = 'white'
     }, 2000)
  }
    }  
+
+  function shadowDisappear(){
+    addition.style.boxShadow = 'none'
+    subtraction.style.boxShadow = 'none'
+    multiplication.style.boxShadow = 'none'
+    division.style.boxShadow = 'none'
+    percentage.style.boxShadow = 'none'
+    plus_minus.style.boxShadow = 'none'
+    deleteNum.style.boxShadow = 'none'
+    equal.style.boxShadow = 'none' 
+  }
   
 function clearAllValues(){
   display.textContent = 0;
@@ -350,7 +367,8 @@ function clearAllValues(){
   operator = ''
   array = []
   error_message.textContent = ''
-  document.body.style.backgroundColor = 'white'
+  // document.body.style.backgroundColor = 'white'
+   shadowDisappear()
   console.log(num1)
   }
 
@@ -366,7 +384,7 @@ nine.addEventListener('click', displayNumbers)
 zero.addEventListener('click', displayNumbers)
 clear.addEventListener('click', clearAllValues)
 
-
+let boxShadow = '0px 0px 30px 5px rgba(255,60,46,0.9)'
 
 addition.addEventListener('click', (e) => {
    if(arr.length == 1){
@@ -386,6 +404,16 @@ addition.addEventListener('click', (e) => {
     operator = '+'
     percentClicked = 'no'
     array = []
+    
+
+    shadowDisappear()
+     if(operator == '+'){
+     addition.style.boxShadow = boxShadow   
+  }
+
+  // else {
+  //   addition.style.boxShadow = noBoxShadow  
+  // }
 })
 
 subtraction.addEventListener('click', (e) => { 
@@ -412,6 +440,10 @@ subtraction.addEventListener('click', (e) => {
    operator = '-'
    percentClicked = 'no'
    array = []
+  shadowDisappear()
+     if(operator == '-'){
+     subtraction.style.boxShadow = boxShadow   
+  }
 })
 
 multiplication.addEventListener('click', (e) => {
@@ -432,10 +464,15 @@ multiplication.addEventListener('click', (e) => {
   operator = 'x'
   percentClicked = 'no'
   array = []
+   shadowDisappear()
+     if(operator == 'x'){
+     multiplication.style.boxShadow = boxShadow   
+  }
+  
 })
 
 division.addEventListener('click', (e) => {
-  document.body.style.backgroundColor = 'green'
+  // document.body.style.backgroundColor = 'green'
   if(arr.length == 1){
     operator = '/'
     arr.push('/')
@@ -453,6 +490,12 @@ division.addEventListener('click', (e) => {
   operator = '/'
   percentClicked = 'no'
   array = []
+    shadowDisappear()
+     if(operator == '/'){
+     division.style.boxShadow = boxShadow   
+  }
+  
+  
 })
 
 percentage.addEventListener('click', () => { 
@@ -460,13 +503,25 @@ percentage.addEventListener('click', () => {
   num1 = display.textContent
   arr = [num1]
   percentClicked = 'yes'
+     operate(operator, num1, num2)  
+     if(display.textContent.length > 9){
+    display.textContent = display.textContent.slice(0, 9)
+    console.log('testingigng')
+    if(display.textContent.includes('.')){
+      display.textContent = Number(display.textContent).toFixed(8)
+    }
+  } 
+  shadowDisappear()
+  if(percentClicked == 'yes'){
+    percentage.style.boxShadow = boxShadow   
+  }
   console.log(arr)
   console.log(percentClicked)
 })
 
 plus_minus.addEventListener('click', () => {
-  document.body.style.backgroundColor = 'green';
-  if(array.length < 9){
+  // document.body.style.backgroundColor = 'green';
+  if(array.length < 9 && arr.toString().length < 9){
     if(display.textContent == '0'){
       display.textContent = '-0'
       // arr.push(display.textContent)
@@ -501,17 +556,20 @@ plus_minus.addEventListener('click', () => {
   }else {
     setTimeout(()=> {
       error_message.textContent = 'Delete One Character'
+             document.body.style.backgroundColor = 'black'
     }, 10)
     setTimeout(()=> {
       error_message.textContent = ''
+             document.body.style.backgroundColor = 'white'
     }, 3000)
     error_message.textContent = ''
   }
- 
+shadowDisappear()
+ plus_minus.style.boxShadow = boxShadow
 })
 
 decimal.addEventListener('click', () => {
-  document.body.style.backgroundColor = 'green'
+  // document.body.style.backgroundColor = 'green'
  if(!display.textContent.includes('.')){
   if(arr.length < 2 && equalToClicked == 'no'){
         display.textContent += '.'
@@ -539,22 +597,23 @@ console.log(arr)
 })
 
 deleteNum.addEventListener('click', () => {
-  document.body.style.backgroundColor = 'pink'
+  // document.body.style.backgroundColor = 'pink'
   if(arr.length == 1 && equalToClicked == 'yes'){
     display.textContent = display.textContent.slice(0, -1)
     num1 = display.textContent
     arr = [num1]
     console.log('what showed')
   }
-  if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
-      display.textContent = display.textContent.slice(0, -1)
-      num1 = display.textContent
-      arr = [num1]
-      array.pop()
-      console.log(arr)
-      console.log(num1)
+//   if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
+//       display.textContent = display.textContent.slice(0, -1)
+//       num1 = display.textContent
+//       arr = [num1]
+//       array.pop()
+//       console.log(arr)
+//       console.log(num1)
  
-  } else if(num1.length == 1 && arr.length < 3 && equalToClicked == 'no'){
+//   }
+  else if(num1.length == 1 && arr.length < 3 && equalToClicked == 'no'){
       display.textContent = display.textContent.slice(0, -1)
       display.textContent = '0'
       num1 = ''
@@ -581,28 +640,31 @@ deleteNum.addEventListener('click', () => {
       console.log(arr)
     console.log(num2)
     }
- 
+
+shadowDisappear()
+ deleteNum.style.boxShadow = boxShadow
 })
 
 //ss
 equal.addEventListener('click', () => {
   operate(operator, num1, num2) 
-  arr.splice(1,1)
- 
+  arr.splice(1,1) 
   equalToClicked = 'yes'
   // num1 = ''
   // num2 = ''
   console.log(equalToClicked)
-  console.log(arr)
+  console.log(`This is arr ${arr}`)
   array = []
   if(display.textContent.length > 9){
     display.textContent = display.textContent.slice(0, 9)
-    console.log('testingigng')
+    console.log('testingigng') 
     if(display.textContent.includes('.')){
       display.textContent = Number(display.textContent).toFixed(8)
     }
-  }
-})
+  } 
+   shadowDisappear()
+    equal.style.boxShadow = boxShadow
+}) 
 
 // make values in screen not exceed 9
 // round up the values
@@ -612,3 +674,4 @@ equal.addEventListener('click', () => {
 // 9 * 3 then delete should be able to put another num2 value (done)
 // decimal after equal to numbers not adding to the display
 // make the keyboard keys respond to only numbers and not everyother keys
+// 8 * 3 then plus_minus is floating out of the screen

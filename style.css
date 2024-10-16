@@ -1,13 +1,16 @@
 body {
   display: flex;
   flex-direction: column;
-  
+  height: 10px;
+/*   overflow: hidden; */
+  background-color: white;
 }
+  
 
 h1 {
     text-align: center;
-    margin-top: -3px;
-    margin-bottom: 2px;
+    margin-top: -6px;
+    margin-bottom: -3px;
   }
   
   #top_screen {
@@ -16,20 +19,22 @@ h1 {
   }
   
   #calculator_container {
-    width: 360px;
-    height: 540px;
-    background-color: black;
+    width: 330px;
+    height: 50px;
+   
     margin: auto;
-    border-radius: 40px;
+    border-radius: 20px;
   }
   
   #display_screen_container {
-    /* background-color: pink; */
+     background-color: black;
     color: white;
-    width: 358px;
-    height: 80px;
-    margin-top: -20px;
-  /*   margin-bottom: px; */
+    width: 322px;
+    height: 65px;
+    position: relative;
+    top: -48px;
+/*     margin-top: -20px; */
+    margin-bottom: -30px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -38,13 +43,15 @@ h1 {
   }
 
   #error_message {
-    /* background-color: green; */
+/*     background-color: green; */
     color: white;
     position: relative;
-    /* bottom: -10px; */
-    /* width: 96.5%; */
+/*     bottom: 50px; */
+    top: -22px;
+    width: 96.5%;
     height: 50px;
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
     margin-top: 20px;
     margin-left: auto;
@@ -55,9 +62,15 @@ h1 {
   font-size: 60px;  
   font-family: Arial;
   font-weight: 400;
-  margin: auto;
-  margin-right: 6px;
-  margin-bottom: -5px;
+/*   margin: auto; */
+    position: relative;
+    top: 27px;
+/*     right: 0px; */
+  margin-right: 1px;
+  margin-bottom: 25px;
+/*   margin-top: -10px; */
+/*     width: 100px; */
+
   }
 
 
@@ -69,16 +82,17 @@ h1 {
   /*   gap: 10px; */
     row-gap: 7px;
   /*   background-color: orange; */
-  /*   margin-top: 50px; */
+    margin-top: -40px;
    }
   
   button {
-    width: 78px;
-    height: 75px;
-    border-radius: 40%;
+    width: 75px;
+    height: 70px;
+    border-radius: 20%;
     border: none;
     font-size: 25px;
-    
+    position: relative;
+   ;
   /*   text-decoration: none; */
   /*   margin-left: 10px; */
   }
@@ -94,13 +108,17 @@ h1 {
   }
   
   
-  #divide, #multiply, #minus, #add, #equal, #back_space {
+ #equal, #back_space {
     background-color: #EE9406;
     color: white;
   }
   
   #clear, #plus_minus, #percentage {
     background-color: #AEAEAE;
+  }
+  
+  #addition, #subtraction, #multiplication, #division {
+    background-color: rgb(225,235,225);
   }
   
   #last_row {
@@ -113,12 +131,12 @@ h1 {
    font-size: 20px;
   }
   
-  #test {
+/*   #test {
     width : 30px;
     height: 30px;
     background-color: orange;
     cursor: pointer;
-  }
+  } */
 
   
 

@@ -120,7 +120,16 @@ function operate(operator, num1, num2){
     } 
   }
   }
+
+  let buttons = document.querySelectorAll('button')
+ console.log(buttons) 
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // button.style.transform.active =  'scale(0.97)'
+    })
+  })
  
+
   let buttonNumbers = document.querySelectorAll('.number')
   buttonNumbers.forEach(button => {
     console.log(button.textContent)
@@ -220,7 +229,7 @@ function displayNumbers(e){
         console.log(array)
         console.log(array.length)
    }
-    else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
+    else if(arr.length == 0 || percentClicked == 'yes'){
         console.log(equalToClicked)
          display.textContent = e.target.textContent;
          num1 = e.target.textContent  
@@ -544,3 +553,4 @@ equal.addEventListener('click', () => {
 // display a message if it intends to do that (done)
 // try and loop through the array.from (done)
 // bug putting dot after equal to is not adding dot
+// 8 * 3 = and the deleting is going straight to zero

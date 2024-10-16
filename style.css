@@ -105,3 +105,13 @@ h1 {
     text-align: center;
     margin-top: 20px;
   }
+
+  #clear:active, #percentage:active, #plus_minus:active, 
+  #division:active, #seven:active, #six:active, 
+  #eight:active, #nine:active, #five:active, 
+  #four:active, #three:active, #two:active, #one:active, 
+  #zero:active, #multiplication:active, #addition:active, 
+  #subtraction:active, #equal:active, #back_space:active, 
+  #decimal:active {
+    transform: scale(0.97);
+  }

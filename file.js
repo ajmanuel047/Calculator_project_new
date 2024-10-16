@@ -129,7 +129,7 @@ function operate(operator, num1, num2){
     })
   })
  
-
+  
   let buttonNumbers = document.querySelectorAll('.number')
   buttonNumbers.forEach(button => {
     console.log(button.textContent)
@@ -178,15 +178,35 @@ function operate(operator, num1, num2){
         array.push(e.key) 
         console.log(arr)
      
-      }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+      } else if(arr.length > 2 && num2 != '' && num2 != '0'){
         display.textContent += e.key;
-        num2 += e.key 
+        num2 += e.key
         arr.splice(2, 1)  
-        arr.push(num2)
-        array.push(e.key)
+        arr.push(num2)      
+        array.push(num2)
          console.log(`num2 is ${num2}`)
          console.log(arr)
+         console.log(array)
+         console.log(array.length)
       }
+      if(arr.length == 3 && num2 == '0'){
+        display.textContent = e.key;
+        num2 =  e.key 
+        arr.splice(2, 1)  
+        arr.push(num2)    
+        console.log(arr)
+        array = []
+        array.push(num2)
+      }
+      // else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+      //   display.textContent += e.key;
+      //   num2 += e.key 
+      //   arr.splice(2, 1)  
+      //   arr.push(num2)
+      //   array.push(e.key)
+      //    console.log(`num2 is ${num2}`)
+      //    console.log(arr)
+      // }
         }
       } else {
         setTimeout(()=> {
@@ -229,7 +249,7 @@ function displayNumbers(e){
         console.log(array)
         console.log(array.length)
    }
-    else if(arr.length == 0 || percentClicked == 'yes'){
+    else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
         console.log(equalToClicked)
          display.textContent = e.target.textContent;
          num1 = e.target.textContent  
@@ -277,18 +297,37 @@ function displayNumbers(e){
       console.log(arr)
       array = []
       array.push(num2)
-    }else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+    } else if(arr.length > 2 && num2 != '' && num2 != '0'){
       display.textContent += e.target.textContent;
       num2 += e.target.textContent
       arr.splice(2, 1)  
-      arr.push(num2)
-      
+      arr.push(num2)      
       array.push(num2)
        console.log(`num2 is ${num2}`)
        console.log(arr)
        console.log(array)
        console.log(array.length)
+    } if(arr.length == 3 && num2 == '0'){
+      display.textContent = e.target.textContent;
+      num2 = e.target.textContent  
+      arr.splice(2, 1)  
+      arr.push(num2)    
+      console.log(arr)
+      array = []
+      array.push(num2)
     }
+    // else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
+    //   display.textContent += e.target.textContent;
+    //   num2 += e.target.textContent
+    //   arr.splice(2, 1)  
+    //   arr.push(num2)
+      
+    //   array.push(num2)
+    //    console.log(`num2 is ${num2}`)
+    //    console.log(arr)
+    //    console.log(array)
+    //    console.log(array.length)
+    // }
   }
  else {
     setTimeout(()=> {
@@ -521,7 +560,8 @@ deleteNum.addEventListener('click', () => {
       
       display.textContent = '0'
       num2 = display.textContent
-      arr = []
+      arr.splice(2, 1)
+      arr.push(num2)
       array.pop()
       console.log(arr)
     console.log(num2)
@@ -553,4 +593,4 @@ equal.addEventListener('click', () => {
 // display a message if it intends to do that (done)
 // try and loop through the array.from (done)
 // bug putting dot after equal to is not adding dot
-// 8 * 3 = and the deleting is going straight to zero
+// 9 * 3 then delete should be able to put another num2 value

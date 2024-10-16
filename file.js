@@ -512,13 +512,21 @@ plus_minus.addEventListener('click', () => {
 decimal.addEventListener('click', () => {
   document.body.style.backgroundColor = 'green'
  if(!display.textContent.includes('.')){
-  if(arr.length < 2){
+  if(arr.length < 2 && equalToClicked == 'no'){
         display.textContent += '.'
     
   arr = [display.textContent]
     num1 = display.textContent
   console.log(arr)
-  }else if(arr.length > 2){
+  }
+  else if(equalToClicked == 'yes'){
+    display.textContent = '0.'        
+  arr = [display.textContent]
+  num1 = display.textContent
+  equalToClicked = 'no'
+console.log(arr)
+  }
+  else if(arr.length > 2){
             display.textContent += '.'
     
     arr.splice(2, 1)
@@ -531,6 +539,12 @@ decimal.addEventListener('click', () => {
 
 deleteNum.addEventListener('click', () => {
   document.body.style.backgroundColor = 'pink'
+  if(arr.length == 1 && equalToClicked == 'yes'){
+    display.textContent = display.textContent.slice(0, -1)
+    num1 = display.textContent
+    arr = [num1]
+    console.log('what showed')
+  }
   if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
       display.textContent = display.textContent.slice(0, -1)
       num1 = display.textContent
@@ -539,7 +553,7 @@ deleteNum.addEventListener('click', () => {
       console.log(arr)
       console.log(num1)
  
-  } else if(num1.length == 1 && arr.length < 3){
+  } else if(num1.length == 1 && arr.length < 3 && equalToClicked == 'no'){
       display.textContent = display.textContent.slice(0, -1)
       display.textContent = '0'
       num1 = ''
@@ -556,7 +570,7 @@ deleteNum.addEventListener('click', () => {
       console.log(arr)
       array.pop()
     console.log(num2)
-  } else if(num2.length == 1){
+  } else if(num2.length == 1 && equalToClicked == 'no'){
       
       display.textContent = '0'
       num2 = display.textContent
@@ -566,6 +580,7 @@ deleteNum.addEventListener('click', () => {
       console.log(arr)
     console.log(num2)
     }
+ 
 })
 
 //ss
@@ -593,4 +608,5 @@ equal.addEventListener('click', () => {
 // display a message if it intends to do that (done)
 // try and loop through the array.from (done)
 // bug putting dot after equal to is not adding dot
-// 9 * 3 then delete should be able to put another num2 value
+// 9 * 3 then delete should be able to put another num2 value (done)
+// decimal after equal to numbers not adding to the display

@@ -350,6 +350,7 @@ function clearAllValues(){
   operator = ''
   array = []
   error_message.textContent = ''
+  document.body.style.backgroundColor = 'white'
   console.log(num1)
   }
 
@@ -610,3 +611,4 @@ equal.addEventListener('click', () => {
 // bug putting dot after equal to is not adding dot
 // 9 * 3 then delete should be able to put another num2 value (done)
 // decimal after equal to numbers not adding to the display
+// make the keyboard keys respond to only numbers and not everyother keys

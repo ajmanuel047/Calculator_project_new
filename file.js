@@ -51,65 +51,67 @@ function operate(operator, num1, num2){
   console.log(`num1 is ${num1}`)
   console.log(`num2 is ${num2}`)
   console.log(`operator is ${operator}`)
-  if(operator !== '' && arr.length == 3){
-    
+  if(operator !== '' && arr.length == 3){    
     if(operator == '+'){
-      display.textContent = add(Number(num1), Number(num2))
-      num1 = Number(display.textContent)
-      console.log(`new num1 ${num1}`)
-      arr = []
-      arr.push(num1)      
-      arr.push('+')
-      operator = '+'
-      console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)
+        display.textContent = add(Number(num1), Number(num2))
+        num1 = Number(display.textContent)
+        console.log(`new num1 ${num1}`)
+        arr = []
+        arr.push(num1)      
+        arr.push('+')
+        operator = '+'
+        console.log(`operator is ${operator}`)
+        console.log(`new arr ${arr}`)
       
       console.log(arr)
     }  if(operator == '-'){
-      display.textContent = subtract(Number(num1), Number(num2))
-      num1 = Number(display.textContent)
-      console.log(`new num1 ${num1}`)
-      arr = []
-      arr.push(num1)
-      arr.push('-')
-      operator = '-'
-      console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)      
-      console.log(arr)
+          display.textContent = subtract(Number(num1), Number(num2))
+          num1 = Number(display.textContent)
+          console.log(`new num1 ${num1}`)
+          arr = []
+          arr.push(num1)
+          arr.push('-')
+          operator = '-'
+          console.log(`operator is ${operator}`)
+          console.log(`new arr ${arr}`)      
+          console.log(arr)
     }
     if(operator == 'x'){
-      display.textContent = multiply(Number(num1), Number(num2))
-      num1 = Number(display.textContent)
-      console.log(`new num1 ${num1}`)
-      arr = []
-      arr.push(num1)
-      arr.push('x')
-      operator = 'x'
-      console.log(`operator is ${operator}`)
-      console.log(`new arr ${arr}`)      
-      console.log(arr)
-    }
-    if(operator == '/'){
-      if(num2 != 0){
-        display.textContent = divide(Number(num1), Number(num2))
+        display.textContent = multiply(Number(num1), Number(num2))
         num1 = Number(display.textContent)
         console.log(`new num1 ${num1}`)
         arr = []
         arr.push(num1)
-        arr.push('/')
-        operator = '/'
+        arr.push('x')
+        operator = 'x'
         console.log(`operator is ${operator}`)
         console.log(`new arr ${arr}`)      
         console.log(arr)
+    }
+    if(operator == '/'){
+      if(num2 != 0){
+          display.textContent = divide(Number(num1), Number(num2))
+          num1 = Number(display.textContent)
+          console.log(`new num1 ${num1}`)
+          arr = []
+          arr.push(num1)
+          arr.push('/')
+          operator = '/'
+          console.log(`operator is ${operator}`)
+          console.log(`new arr ${arr}`)      
+          console.log(arr)
       }else if(num2 == 0){         
         setTimeout(() => {
           error_message.textContent = 'Divider Should Not Be Zero'
           display.textContent = ''
           error_message.style.color = 'red'
+          document.body.style.backgroundColor = 'black'
         }, 10);
 
         setTimeout(() => {
           error_message.textContent = ''
+          document.body.style.backgroundColor = 'white'
+          shadowDisappear()
         }, 2000);
 
         setTimeout(() => {
@@ -122,7 +124,7 @@ function operate(operator, num1, num2){
   }
 
   let buttons = document.querySelectorAll('button')
- console.log(buttons) 
+  console.log(buttons) 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       // button.style.transform.active =  'scale(0.97)'
@@ -137,76 +139,73 @@ function operate(operator, num1, num2){
       if(array.length < 9){
         if(e.key == button.textContent){
           if(display.textContent == '-0'){
-        display.textContent = `-`
-        num1 = `-${e.key}`
-        arr.push(`-${e.key}`)
-        console.log(arr)
-      }
+              display.textContent = `-`
+              num1 = `-${e.key}`
+              arr.push(`-${e.key}`)
+              console.log(arr)
+            }
         if(arr[0] == '-'){
-       arr = [Number(`-${e.key}`)]
-         num1 = Number(`-${e.key}`)
-         display.textContent =  Number(`-${e.key}`)
-       console.log('test')
-          console.log(arr)  
-     }
+           arr = [Number(`-${e.key}`)]
+           num1 = Number(`-${e.key}`)
+           display.textContent =  Number(`-${e.key}`)
+           console.log('test')
+           console.log(arr)  
+           }
       else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
-          console.log(equalToClicked)
-           display.textContent = e.key;
-           num1 = e.key  
-           arr = [num1]
-           array.push(e.key)
-           equalToClicked = 'no'
-           console.log(percentClicked)
-           console.log(arr)
+              console.log(equalToClicked)
+              display.textContent = e.key;
+              num1 = e.key  
+              arr = [num1]
+              array.push(e.key)
+              equalToClicked = 'no'
+              percentClicked = 'no'
+              console.log(percentClicked)
+              console.log(arr)
+           if(display.textContent == 0 && arr.length < 2){
+              arr = []
+              array.pop()
+              console.log(arr)
+           }
       } 
       else if(arr.length == 1){
-        display.textContent += e.key
-        num1 = display.textContent  
-        arr = [num1]      
-        array.push(e.key)
-        console.log(arr)
-        console.log(array)
+          display.textContent += e.key
+          num1 = display.textContent  
+          arr = [num1]      
+          array.push(e.key)
+          console.log(arr)
+          console.log(array)
       }  else if(arr.length == 2 && num2 !== ''){
-        num1 = display.textContent
-        console.log('e work')
+            num1 = display.textContent
+            console.log('e work')
       }
       
       if(arr.length == 2){
-        display.textContent = e.key;
-        num2 = e.key 
-        arr.push(num2)   
-        array.push(e.key) 
-        console.log(arr)
+          display.textContent = e.key;
+          num2 = e.key 
+          arr.push(num2)   
+          array.push(e.key) 
+          console.log(arr)
      
       } else if(arr.length > 2 && num2 != '' && num2 != '0'){
-        display.textContent += e.key;
-        num2 += e.key
-        arr.splice(2, 1)  
-        arr.push(num2)      
-        array.push(num2)
-         console.log(`num2 is ${num2}`)
-         console.log(arr)
-         console.log(array)
-         console.log(array.length)
+          display.textContent += e.key;
+          num2 += e.key
+          arr.splice(2, 1)  
+          arr.push(num2)      
+          array.push(num2)
+          console.log(`num2 is ${num2}`)
+          console.log(arr)
+          console.log(array)
+          console.log(array.length)
       }
       if(arr.length == 3 && num2 == '0'){
-        display.textContent = e.key;
-        num2 =  e.key 
-        arr.splice(2, 1)  
-        arr.push(num2)    
-        console.log(arr)
-        array = []
-        array.push(num2)
+          display.textContent = e.key;
+          num2 =  e.key 
+          arr.splice(2, 1)  
+          arr.push(num2)    
+          console.log(arr)
+          array = []
+          array.push(num2)
       }
-      // else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
-      //   display.textContent += e.key;
-      //   num2 += e.key 
-      //   arr.splice(2, 1)  
-      //   arr.push(num2)
-      //   array.push(e.key)
-      //    console.log(`num2 is ${num2}`)
-      //    console.log(arr)
-      // }
         }
       } else {
         setTimeout(()=> {
@@ -219,9 +218,7 @@ function operate(operator, num1, num2){
            document.body.style.backgroundColor = 'white'
         }, 2000)
       }
-    // document.body.style.backgroundColor = 'orange'
-    
-     console.log(e.key)
+       console.log(e.key)
   })
 })
 
@@ -229,108 +226,101 @@ function operate(operator, num1, num2){
 
 
 function displayNumbers(e){  
-  console.log(typeof display)
-  console.log(num1)
+      console.log(typeof display)
+      console.log(num1)
   if(array.length < 9){
     if(display.textContent == '-0'){
-      display.textContent = `-`
-      num1 = display.textContent
-      arr.push(`-${e.target.textContent}`)
-      array.push(`-${e.target.textContent}`)
-      console.log(arr)
-      console.log(array)
-      console.log(array.length)
-    }
-      if(arr[0] == '-'){
-     arr = [Number(`-${e.target.textContent}`)]
-     array = [Number(`-${e.target.textContent}`)]
-       num1 = Number(`-${e.target.textContent}`)
-       display.textContent =  Number(`-${e.target.textContent}`)
-     console.log('test')
+        display.textContent = `-`
+        num1 = display.textContent
+        arr.push(`-${e.target.textContent}`)
+        array.push(`-${e.target.textContent}`)
         console.log(arr)
         console.log(array)
         console.log(array.length)
+    }
+      if(arr[0] == '-'){
+         arr = [Number(`-${e.target.textContent}`)]
+         array = [Number(`-${e.target.textContent}`)]
+         num1 = Number(`-${e.target.textContent}`)
+         display.textContent =  Number(`-${e.target.textContent}`)
+         console.log('test')
+         console.log(arr)
+         console.log(array)
+         console.log(array.length)
    }
     else if(arr.length == 0 || equalToClicked == 'yes' || percentClicked == 'yes'){
-        console.log(equalToClicked)
+         console.log(equalToClicked)
          display.textContent = e.target.textContent;
          num1 = e.target.textContent  
          arr = [num1]
          array = [num1]
          equalToClicked = 'no'
+         percentClicked = 'no'
          console.log(percentClicked)
          console.log(arr)
          console.log(array)
          console.log(array.length)
+         if(display.textContent == 0 && arr.length < 2){
+             arr = []
+             console.log(arr)
+         }
     } 
     else if(arr.length == 1){
-      console.log(`${typeof num1}`)
+       console.log(`${typeof num1}`)
        console.log(`${num1}`)
       if(num1.includes('.')){
-      display.textContent += e.target.textContent
-      num1 = display.textContent   
-      arr = [num1]  
-      array = [num1]  
-            console.log(`This?  ${arr}`)
-            console.log(`This?  ${array}`)
+          display.textContent += e.target.textContent
+          num1 = display.textContent   
+          arr = [num1]  
+          array = [num1]  
+          console.log(`This?  ${arr}`)
+          console.log(`This?  ${array}`)
+          console.log(arr)
+          console.log(array)
+          console.log(array.length)
+        
+      } else {
+            display.textContent += e.target.textContent
+            num1 = display.textContent  
+            arr = [num1]  
+            array.push(num1)  
+            console.log(`Or this? ${num1}`)
             console.log(arr)
             console.log(array)
             console.log(array.length)
-        // console.log('e show')
-      } else {
-        display.textContent += e.target.textContent
-        num1 = display.textContent  
-        arr = [num1]  
-        array.push(num1)  
-        console.log(`Or this? ${num1}`)
+          } 
+  
+    }  else if(arr.length == 2 && num2 !== ''){
+               num1 = display.textContent
+               console.log('e work')
+        }
+    
+    if(arr.length == 2){
+        display.textContent = e.target.textContent;
+        num2 = e.target.textContent  
+        arr.push(num2)    
+        console.log(arr)
+        array = []
+        array.push(num2)
+    } else if(arr.length > 2 && num2 != '' && num2 != '0'){
+        display.textContent += e.target.textContent;
+        num2 += e.target.textContent
+        arr.splice(2, 1)  
+        arr.push(num2)      
+        array.push(num2)
+        console.log(`num2 is ${num2}`)
         console.log(arr)
         console.log(array)
         console.log(array.length)
-      } 
-  
-    }  else if(arr.length == 2 && num2 !== ''){
-      num1 = display.textContent
-      console.log('e work')
-    }
-    
-    if(arr.length == 2){
-      display.textContent = e.target.textContent;
-      num2 = e.target.textContent  
-      arr.push(num2)    
-      console.log(arr)
-      array = []
-      array.push(num2)
-    } else if(arr.length > 2 && num2 != '' && num2 != '0'){
-      display.textContent += e.target.textContent;
-      num2 += e.target.textContent
-      arr.splice(2, 1)  
-      arr.push(num2)      
-      array.push(num2)
-       console.log(`num2 is ${num2}`)
-       console.log(arr)
-       console.log(array)
-       console.log(array.length)
     } if(arr.length == 3 && num2 == '0'){
-      display.textContent = e.target.textContent;
-      num2 = e.target.textContent  
-      arr.splice(2, 1)  
-      arr.push(num2)    
-      console.log(arr)
-      array = []
-      array.push(num2)
-    }
-    // else if(arr[1] == '+' || arr[1] == '-' || arr[1] == 'x' || arr[1] == '/'){
-    //   display.textContent += e.target.textContent;
-    //   num2 += e.target.textContent
-    //   arr.splice(2, 1)  
-    //   arr.push(num2)
-      
-    //   array.push(num2)
-    //    console.log(`num2 is ${num2}`)
-    //    console.log(arr)
-    //    console.log(array)
-    //    console.log(array.length)
-    // }
+         display.textContent = e.target.textContent;
+         num2 = e.target.textContent  
+         arr.splice(2, 1)  
+         arr.push(num2)    
+         console.log(arr)
+         array = []
+         array.push(num2)
+        } 
   }
  else {
     setTimeout(()=> {
@@ -367,8 +357,7 @@ function clearAllValues(){
   operator = ''
   array = []
   error_message.textContent = ''
-  // document.body.style.backgroundColor = 'white'
-   shadowDisappear()
+  shadowDisappear()
   console.log(num1)
   }
 
@@ -388,52 +377,46 @@ let boxShadow = '0px 0px 30px 5px rgba(255,60,46,0.9)'
 
 addition.addEventListener('click', (e) => {
    if(arr.length == 1){
-    operator = '+'
-    arr.push('+')
-    console.log(arr)
-  } 
+        operator = '+'
+        arr.push('+')
+        console.log(arr)
+     } 
     operate(operator, num1, num2)
     if(display.textContent.length > 9){
-      display.textContent = display.textContent.slice(0, 9)
-      console.log('testingigng')
+        display.textContent = display.textContent.slice(0, 9)
+        console.log('testingigng')
       if(display.textContent.includes('.')){
-        display.textContent = Number(display.textContent).toFixed(8)
+          display.textContent = Number(display.textContent).toFixed(8)
       }
     }
     equalToClicked = 'no'
     operator = '+'
     percentClicked = 'no'
     array = []
-    
-
-    shadowDisappear()
+     shadowDisappear()
      if(operator == '+'){
-     addition.style.boxShadow = boxShadow   
-  }
-
-  // else {
-  //   addition.style.boxShadow = noBoxShadow  
-  // }
+        addition.style.boxShadow = boxShadow   
+       }
 })
 
 subtraction.addEventListener('click', (e) => { 
   if(arr.length == 1){
-    operator = '-'
-    arr.push('-')
-    console.log(arr)
+      operator = '-'
+      arr.push('-')
+      console.log(arr)
   } else if(arr.length == 0){
-    arr.push('-')
-    console.log(arr)
+      arr.push('-')
+      console.log(arr)
   } 
   if(arr[0] == '0'){
-    arr.push('-')
-  }
+      arr.push('-')
+    }
    operate(operator, num1, num2)  
      if(display.textContent.length > 9){
-    display.textContent = display.textContent.slice(0, 9)
-    console.log('testingigng')
+          display.textContent = display.textContent.slice(0, 9)
+          console.log('testingigng')
     if(display.textContent.includes('.')){
-      display.textContent = Number(display.textContent).toFixed(8)
+        display.textContent = Number(display.textContent).toFixed(8)
     }
   } 
    equalToClicked = 'no'
@@ -442,8 +425,8 @@ subtraction.addEventListener('click', (e) => {
    array = []
   shadowDisappear()
      if(operator == '-'){
-     subtraction.style.boxShadow = boxShadow   
-  }
+         subtraction.style.boxShadow = boxShadow   
+      }
 })
 
 multiplication.addEventListener('click', (e) => {
@@ -454,10 +437,10 @@ multiplication.addEventListener('click', (e) => {
   } 
   operate(operator, num1, num2)
   if(display.textContent.length > 9){
-    display.textContent = display.textContent.slice(0, 9)
-    console.log('testingigng')
+      display.textContent = display.textContent.slice(0, 9)
+      console.log('testingigng')
     if(display.textContent.includes('.')){
-      display.textContent = Number(display.textContent).toFixed(8)
+        display.textContent = Number(display.textContent).toFixed(8)
     }
   }
   equalToClicked = 'no'
@@ -468,11 +451,10 @@ multiplication.addEventListener('click', (e) => {
      if(operator == 'x'){
      multiplication.style.boxShadow = boxShadow   
   }
-  
 })
 
 division.addEventListener('click', (e) => {
-  // document.body.style.backgroundColor = 'green'
+  
   if(arr.length == 1){
     operator = '/'
     arr.push('/')
@@ -480,10 +462,10 @@ division.addEventListener('click', (e) => {
   } 
   operate(operator, num1, num2)
   if(display.textContent.length > 9){
-    display.textContent = display.textContent.slice(0, 9)
-    console.log('testingigng')
+      display.textContent = display.textContent.slice(0, 9)
+      console.log('testingigng')
     if(display.textContent.includes('.')){
-      display.textContent = Number(display.textContent).toFixed(8)
+        display.textContent = Number(display.textContent).toFixed(8)
     }
   }
   equalToClicked = 'no'
@@ -493,9 +475,7 @@ division.addEventListener('click', (e) => {
     shadowDisappear()
      if(operator == '/'){
      division.style.boxShadow = boxShadow   
-  }
-  
-  
+  }  
 })
 
 percentage.addEventListener('click', () => { 
@@ -505,26 +485,25 @@ percentage.addEventListener('click', () => {
   percentClicked = 'yes'
      operate(operator, num1, num2)  
      if(display.textContent.length > 9){
-    display.textContent = display.textContent.slice(0, 9)
-    console.log('testingigng')
+         display.textContent = display.textContent.slice(0, 9)
+         console.log('testingigng')
     if(display.textContent.includes('.')){
       display.textContent = Number(display.textContent).toFixed(8)
     }
   } 
   shadowDisappear()
   if(percentClicked == 'yes'){
-    percentage.style.boxShadow = boxShadow   
+       percentage.style.boxShadow = boxShadow   
   }
-  console.log(arr)
-  console.log(percentClicked)
+    console.log(arr)
+    console.log(percentClicked)
 })
 
 plus_minus.addEventListener('click', () => {
-  // document.body.style.backgroundColor = 'green';
+ 
   if(array.length < 9 && arr.toString().length < 9){
     if(display.textContent == '0'){
       display.textContent = '-0'
-      // arr.push(display.textContent)
       console.log(arr)
     } else if(display.textContent == '-0'){
       display.textContent = '0'
@@ -556,55 +535,101 @@ plus_minus.addEventListener('click', () => {
   }else {
     setTimeout(()=> {
       error_message.textContent = 'Delete One Character'
-             document.body.style.backgroundColor = 'black'
+      document.body.style.backgroundColor = 'black'
     }, 10)
     setTimeout(()=> {
       error_message.textContent = ''
-             document.body.style.backgroundColor = 'white'
+      document.body.style.backgroundColor = 'white'
     }, 3000)
-    error_message.textContent = ''
+      error_message.textContent = ''
   }
-shadowDisappear()
- plus_minus.style.boxShadow = boxShadow
+      shadowDisappear()
+      plus_minus.style.boxShadow = boxShadow
 })
 
 decimal.addEventListener('click', () => {
-  // document.body.style.backgroundColor = 'green'
+  
  if(!display.textContent.includes('.')){
   if(arr.length < 2 && equalToClicked == 'no'){
-        display.textContent += '.'
-    
-  arr = [display.textContent]
-    num1 = display.textContent
-  console.log(arr)
+       display.textContent += '.'
+       arr = [display.textContent]
+       num1 = display.textContent
+       console.log(arr)
   }
   else if(equalToClicked == 'yes'){
     display.textContent = '0.'        
-  arr = [display.textContent]
-  num1 = display.textContent
-  equalToClicked = 'no'
-console.log(arr)
+    arr = [display.textContent]
+    num1 = display.textContent
+    equalToClicked = 'no'
+    console.log(arr)
   }
   else if(arr.length > 2){
-            display.textContent += '.'
-    
+    display.textContent += '.'
     arr.splice(2, 1)
     arr.push(display.textContent)
     num2 = display.textContent
-  console.log(arr)
+    console.log(arr)
   }
  }
 })
 
 deleteNum.addEventListener('click', () => {
-  // document.body.style.backgroundColor = 'pink'
-  if(arr.length == 1 && equalToClicked == 'yes'){
+
+  if(arr.length == 1 && display.textContent.length != 1){
     display.textContent = display.textContent.slice(0, -1)
     num1 = display.textContent
     arr = [num1]
-    console.log('what showed')
+    array.pop()
+    console.log(arr)
+    console.log(display.textContent.length)
+    
   }
-//   if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
+  else if(display.textContent.length == 1 && arr.length == 1){
+    display.textContent = '0'
+    num1 = ''
+    arr = []
+    array.pop()
+  }
+  if(arr.length == 3 && display.textContent.length != 1){
+    display.textContent = display.textContent.slice(0, -1)
+    num2 = display.textContent
+    arr.pop()
+    arr.push(num2)
+    array.pop()
+    console.log(arr)
+  }
+  else if(display.textContent.length == 1 && arr.length == 3){
+    display.textContent = '0'
+    num2 = 0
+    arr.pop()
+    arr.push(num2)
+    array.pop()
+    console.log('showww')
+    console.log(arr)
+  }
+ shadowDisappear()
+ deleteNum.style.boxShadow = boxShadow
+})
+
+// deleteNum.addEventListener('click', () => {
+//   // document.body.style.backgroundColor = 'pink'
+//   if(arr.length == 1 && equalToClicked == 'yes'){
+//     display.textContent = display.textContent.slice(0, -1)
+//     num1 = display.textContent
+//     arr = [num1]
+//     console.log('what showed')
+//     console.log(arr)
+//     if(num1.length == 1){
+//       equalToClicked = 'no'
+//       num1 = ''
+//       arr = []
+//       array.pop()
+//       console.log('second if')
+      
+//     }
+//   }
+
+//  else if(arr.length < 2 && display.textContent != 0 && num1.length != 1){
 //       display.textContent = display.textContent.slice(0, -1)
 //       num1 = display.textContent
 //       arr = [num1]
@@ -613,37 +638,38 @@ deleteNum.addEventListener('click', () => {
 //       console.log(num1)
  
 //   }
-  else if(num1.length == 1 && arr.length < 3 && equalToClicked == 'no'){
-      display.textContent = display.textContent.slice(0, -1)
-      display.textContent = '0'
-      num1 = ''
-      arr = []
-      console.log(arr)
-      array.pop()
-    console.log(num1)
-    }
-  if(arr.length == 3 && num2.length != 1){
-     display.textContent = display.textContent.slice(0, -1)
-      num2 = display.textContent
-      arr.splice(2, 1)
-      arr.push(num2)
-      console.log(arr)
-      array.pop()
-    console.log(num2)
-  } else if(num2.length == 1 && equalToClicked == 'no'){
+//   else if(num1.length == 1 && arr.length < 3 && equalToClicked == 'no'){
+//       display.textContent = display.textContent.slice(0, -1)
+//       display.textContent = '0'
+//       num1 = ''
+//       arr = []
+//       console.log(arr)
+//       array.pop()
+//     console.log(num1)
+//     }
+//   if(arr.length == 3 && num2.length != 1){
+//      display.textContent = display.textContent.slice(0, -1)
+//       num2 = display.textContent
+//       arr.splice(2, 1)
+//       arr.push(num2)
+//       console.log(arr)
+//       array.pop()
+//     console.log(num2)
+//   } else if(num2.length == 1 && equalToClicked == 'no'){
       
-      display.textContent = '0'
-      num2 = display.textContent
-      arr.splice(2, 1)
-      arr.push(num2)
-      array.pop()
-      console.log(arr)
-    console.log(num2)
-    }
+//       display.textContent = '0'
+//       num2 = display.textContent
+//       arr.splice(2, 1)
+//       // arr.push(num2)
+//       array.pop()
+//       console.log(arr)
+//     console.log(num2)
+//     console.log(display.textContent.length)
+//     }
 
-shadowDisappear()
- deleteNum.style.boxShadow = boxShadow
-})
+// shadowDisappear()
+//  deleteNum.style.boxShadow = boxShadow
+// })
 
 //ss
 equal.addEventListener('click', () => {
@@ -675,3 +701,5 @@ equal.addEventListener('click', () => {
 // decimal after equal to numbers not adding to the display
 // make the keyboard keys respond to only numbers and not everyother keys
 // 8 * 3 then plus_minus is floating out of the screen
+// 68 / 3 the number is floating out of the screen
+// 99 / 31 equals then delete everything
